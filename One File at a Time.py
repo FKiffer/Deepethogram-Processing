@@ -14,7 +14,8 @@ df.loc['behavior_frequency']=df.diff().eq(1).cumsum().max()
 df.loc['latency_to first(sec)'] = firstindex / framerate
 
 behframesum = df.xs('total_frames').sum()
-df.loc['percent_double-labelled'] = (behframesum / maxindex) - 1
+df.loc['percent_double-labelled'] = "-"
+df.iloc[-1,0] = ((behframesum / maxindex) - 1)*100
 
 print(df)
 df.to_csv('/Users/user/Desktop/folder/name.csv') # input save location and file name here
