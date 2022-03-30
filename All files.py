@@ -8,10 +8,10 @@ import pandas as pd
 framerate = 30  # edit this number if your videos have a different framerate
 
 # manually input behaviors exactly as they appear in your deepethogram output CSVs
-behaviors = ['background','Deference','PassiveConflict','ActiveConflict']
+behaviors = ['background','behavior1','behavior2','behavior3']
 
-# specify save path here:
-save_path = f'/Users/fredkiffer/Desktop/Output/'
+# specify save path here (this looks different on windows):
+save_path = f'/Users/user/Desktop/Output/' #TODO: update this with tkinter
 
 file_path = filedialog.askdirectory()
 pattern = os.path.join(file_path, '*.csv')
