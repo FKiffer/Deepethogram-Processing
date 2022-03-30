@@ -24,7 +24,6 @@ filename['Filename'] = pd.Series([file for file in files]).reset_index(drop=True
 dfs = []
 for index, file in enumerate(files):
     df = pd.read_csv(file, sep=',', index_col=[0])
-    df.loc['total_frames'] = df.sum(numeric_only=True, axis=0)
 
     totalvideoframes = df.shape[0]
     firstindex = (df >= 1).idxmax()
