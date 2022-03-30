@@ -20,7 +20,6 @@ files = glob.glob(pattern)
 filename = pd.DataFrame(columns=['Filename'])
 #filename.set_index('Filename')
 filename['Filename'] = pd.Series([file for file in files]).reset_index(drop=True)
-print(filename)
 
 dfs = []
 for index, file in enumerate(files):
