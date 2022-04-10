@@ -5,17 +5,19 @@ import tkinter.filedialog as filedialog
 import glob
 import pandas as pd
 
-framerate = 30  # edit this number if your videos have a different framerate
+framerate = int(input('Enter the framerate of the video recordings (the DeepEthogram GUI tells you this)'))
 
-# manually input behaviors exactly as they appear in your deepethogram output CSVs
 behaviors = ['background','behavior1','behavior2','behavior3']
 
-# specify save path here (this looks different on windows):
-save_path = f'/Users/user/Desktop/Output/' #TODO: update this with tkinter
+print('Please select folder containing all output csv files from DeepEthogram')
 
 file_path = filedialog.askdirectory()
 pattern = os.path.join(file_path, '*.csv')
 files = glob.glob(pattern)
+
+print('Please select the folder you want your tabulated files saved in')
+
+save_path = save_path = filedialog.askdirectory()
 
 filename = pd.DataFrame(columns=['Filename'])
 #filename.set_index('Filename')
@@ -70,9 +72,9 @@ print(behavior_frequency_indexed)
 print(latency_to_first_indexed)
 print(double_labelling_indexed)
 
-total_frames_indexed.to_csv(save_path + 'total_frames.csv')
-behavior_durations_indexed.to_csv(save_path + 'behavior_durations.csv')
-percent_behavior_indexed.to_csv(save_path + 'percent_behavior.csv')
-behavior_frequency_indexed.to_csv(save_path + 'behavior_frequency.csv')
-latency_to_first_indexed.to_csv(save_path + 'latency_to_first.csv')
-double_labelling_indexed.to_csv(save_path + 'percent_double_labelled.csv')
+total_frames_indexed.to_csv(save_path + '/total_frames.csv')
+behavior_durations_indexed.to_csv(save_path + '/ehavior_durations.csv')
+percent_behavior_indexed.to_csv(save_path + '/percent_behavior.csv')
+behavior_frequency_indexed.to_csv(save_path + '/behavior_frequency.csv')
+latency_to_first_indexed.to_csv(save_path + '/latency_to_first.csv')
+double_labelling_indexed.to_csv(save_path + '/percent_double_labelled.csv')
