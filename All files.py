@@ -5,24 +5,36 @@ import tkinter.filedialog as filedialog
 import glob
 import pandas as pd
 
+# prompts user to input framerate
 framerate = int(input('Enter the framerate of the video recordings (the DeepEthogram GUI tells you this)'))
 
-behaviors = ['background','behavior1','behavior2','behavior3']
+# prompts user to manually input behaviors exactly as they appear in their deepethogram output CSVs
+behaviors = ['background']
+behavior_number = int(input('Enter the number of behaviors not including background,'
+                            ' exactly as they appear on the output csv'))
+for i in range(0, behavior_number):
+    print('Behavior {}:'.format(i+1))
+    added_behavior = input()
+    behaviors.append(added_behavior)
+print('Your behaviors being analyzed are: \n',behaviors)
 
+# prompts user to point to data folder
 print('Please select folder containing all output csv files from DeepEthogram')
 
 file_path = filedialog.askdirectory()
 pattern = os.path.join(file_path, '*.csv')
 files = glob.glob(pattern)
 
+# prompts user to point to save/output folder
 print('Please select the folder you want your tabulated files saved in')
 
 save_path = save_path = filedialog.askdirectory()
 
+# creates dataframe for file names
 filename = pd.DataFrame(columns=['Filename'])
-#filename.set_index('Filename')
 filename['Filename'] = pd.Series([file for file in files]).reset_index(drop=True)
 
+# creates dataframes from output CSVs and runs behavioral functions on dataframes 
 dfs = []
 for index, file in enumerate(files):
     df = pd.read_csv(file, sep=',', index_col=[0])
@@ -45,6 +57,7 @@ for index, file in enumerate(files):
 
     dfs.append(df)
 
+# joins all dataframes and creates new ones by function variable, adds filenames
 dfs = pd.concat(dfs)
 
 total_frames = dfs[dfs.index == 'total_frames'][behaviors]
@@ -72,6 +85,7 @@ print(behavior_frequency_indexed)
 print(latency_to_first_indexed)
 print(double_labelling_indexed)
 
+# saves to csv
 total_frames_indexed.to_csv(save_path + '/total_frames.csv')
 behavior_durations_indexed.to_csv(save_path + '/ehavior_durations.csv')
 percent_behavior_indexed.to_csv(save_path + '/percent_behavior.csv')
