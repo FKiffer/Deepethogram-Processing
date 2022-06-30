@@ -87,7 +87,7 @@ print(double_labelling_indexed)
 
 # saves to csv
 total_frames_indexed.to_csv(save_path + '/total_frames.csv')
-behavior_durations_indexed.to_csv(save_path + '/ehavior_durations.csv')
+behavior_durations_indexed.to_csv(save_path + '/behavior_durations.csv')
 percent_behavior_indexed.to_csv(save_path + '/percent_behavior.csv')
 behavior_frequency_indexed.to_csv(save_path + '/behavior_frequency.csv')
 latency_to_first_indexed.to_csv(save_path + '/latency_to_first.csv')
