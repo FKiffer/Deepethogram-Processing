@@ -12,4 +12,8 @@ When ran, this prompts the user to:
 5. Point to the folder you wish the new tabulated csv files to be saved in 
 It's a good idea to create an empty folder to save the new output csv files in. Alternatively, the user can copy and paste values from the command prompt as they wish.
 
+
+Alternatively, you can use this [COLAB Notebook](https://colab.research.google.com/drive/1XGEjzpTLlvCVMjwLhPLZkkZoY1fi5mU4#scrollTo=N_scIBJFvmO6) (be sure to make a copy in your own Google drive)
+
+
 Validated in python 3.9 🐍
